@@ -2,7 +2,6 @@ import logging
 import shutil
 import tempfile
 import os
-from typing import List
 
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -120,8 +119,15 @@ async def extract_text_endpoint(file: UploadFile = File(...)):
         if os.path.exists(temp_path):
             try:
                 os.remove(temp_path)
-            except:
+            except Exception:
                 pass
+@app.get("/")
+async def root():
+    return {"message": "PDF Extractor is running"}
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
 
 if __name__ == "__main__":
     import uvicorn
