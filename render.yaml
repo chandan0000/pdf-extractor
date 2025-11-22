@@ -2,7 +2,7 @@ services:
   - type: web
     name: pdf-extractor
     env: docker
-    repo: https://github.com/<your-org-or-user>/<repo>
+    repo: https://github.com/chandan0000/pdf-extractor
     branch: main
     dockerfilePath: Dockerfile
     plan: starter
