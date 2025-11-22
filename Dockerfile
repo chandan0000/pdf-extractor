@@ -16,8 +16,9 @@ WORKDIR /app
 
 COPY requirements.txt .
 RUN python -m pip install --upgrade pip
-RUN pip install -r requirements.txt gunicorn
+RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["sh", "-c", "gunicorn -k uvicorn.workers.UvicornWorker main:app -b 0.0.0.0:${PORT:-8000} --workers 1"]
+# Run with uvicorn directly
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
